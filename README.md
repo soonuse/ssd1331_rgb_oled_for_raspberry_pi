@@ -39,7 +39,7 @@ SSD1331 (0.95inch RGB OLED) library for Raspberry Pi
   * D/C    ->    36 (Physical, wiringPi: 27)
   * RES    ->    35 (Physical, wiringPi: 24)
 ## How to use
-### for WiringPi users 
+### based on WiringPi library
 1.  install the C libraries of wiringPi, see: http://wiringpi.com/download-and-install/
     fortunately, in the latest version of Raspbian, wiringPi libraries are pre-installed.
 2.  change the current directory to where the Makefile and oled.c file located.
@@ -47,3 +47,16 @@ SSD1331 (0.95inch RGB OLED) library for Raspberry Pi
     make
 4.  run the demo with: 
     sudo ./oled
+* If the OLED flickers, connect the VCC to the 3.3V rather than 5V.
+### based on BCM2835 library
+1.  install the C libraries of bcm2835, see: http://www.airspayce.com/mikem/bcm2835/
+2.  change the current directory to where the Makefile and oled.c file located.
+3.  compile the file with: 
+    make
+4.  run the demo with: 
+    sudo ./oled
+* If the OLED flickers, connect the VCC to the 3.3V rather than 5V.
+* If the characters are shown in wrong condition, you could try other parameters in
+  bcm2835_spi_setClockDivider(uint16_t )
+  like bcm2835_spi_setClockDivider(BCM2835_SPI_CLOCK_DIVIDER_2048); 
+
